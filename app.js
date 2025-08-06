@@ -54,5 +54,5 @@ app.post("/api/codes/update", upload.single("file"), (req, res) => {
   res.json({ success: true });
 });
 
-const PORT = 4000;
+const PORT = 443;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
