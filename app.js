@@ -53,6 +53,12 @@ app.post("/api/codes/update", upload.single("file"), (req, res) => {
   fs.renameSync(req.file.path, XLSX_FILE);
   res.json({ success: true });
 });
-
+app.use("/uploads", express.static(UPLOAD_DIR));
+app.get("/uploads", (req, res) => {
+  fs.readdir(UPLOAD_DIR, (err, files) => {
+    if (err) return res.status(500).send("Cannot read uploads");
+    res.json(files);
+  });
+});
 const PORT = 443;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
